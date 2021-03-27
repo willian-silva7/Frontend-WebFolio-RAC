@@ -5,6 +5,8 @@ import Route from './Route';
 import SignIn from '../pages/SignIn';
 import SignUp from '../pages/SignUp';
 import Dashboard from '../pages/Dashboard';
+import AdminDashboard from '../pages/AdminDashbord';
+import UpdateRole from '../pages/UpdateRole/indext';
 import ForgottenPassword from '../pages/ForgottenPassword';
 import ResetPassword from '../pages/ResetPassword';
 import Profile from '../pages/Profile';
@@ -53,7 +55,9 @@ const Routes: React.FC = () => {
           component={InviteParent}
           isPrivate
         />
+        <Route path="/user/:user+" component={UpdateRole} isPrivate />
         <Route path="/dashboard" component={Dashboard} isPrivate />
+        <Route path="/admindashboard" component={AdminDashboard} isPrivate />
       </Switch>
     </BrowserRouter>
   );

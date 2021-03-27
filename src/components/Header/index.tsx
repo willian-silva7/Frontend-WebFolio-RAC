@@ -18,7 +18,7 @@ const Header: React.FC = () => {
 
         <Profile>
           {user.role === 'admin' && (
-            <Link to="/admin">
+            <Link to="/admindashboard">
               <span>Administrador</span>
             </Link>
           )}

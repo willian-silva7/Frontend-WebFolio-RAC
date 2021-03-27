@@ -182,20 +182,6 @@ export const TableContainer = styled.div`
       font-size: 1.72rem;
     }
 
-    .classroom2 {
-      background-color: var(--color-onblur);
-    }
-    .age2 {
-      background-color: var(--color-onblur);
-    }
-    .last-column2 {
-      background-color: var(--color-onblur);
-      text-align: end;
-    }
-    .name2 {
-      background-color: var(--color-onblur);
-    }
-
     a {
       text-decoration: none;
       margin-right: 0.9rem;

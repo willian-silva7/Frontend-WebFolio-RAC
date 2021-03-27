@@ -4,6 +4,7 @@ import React, { ChangeEvent, useCallback, useEffect, useState } from 'react';
 import { FiEdit, FiEye, FiHome, FiPlus, FiUserPlus } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
 import Header from '../../components/Header';
+import { useAuth } from '../../hooks/AuthContext';
 import api from '../../services/api';
 import {
   Container,
@@ -23,7 +24,11 @@ interface PortfoliosProps {
 
 const Dashboard: React.FC = () => {
   const [portfolios, setPortifolios] = useState<PortfoliosProps[]>([]);
+  const [portfoliosWithPermission, setPortifoliosWithPermission] = useState<
+    PortfoliosProps[]
+  >([]);
   const [searchPortfolio, setSearchPortfolio] = useState('');
+  const { user } = useAuth();
 
   useEffect(() => {
     api.get('/portfolio').then(response => {
@@ -31,9 +36,23 @@ const Dashboard: React.FC = () => {
     });
   }, []);
 
+  useEffect(() => {
+    api.get('/permission').then(response => {
+      setPortifoliosWithPermission(response.data);
+    });
+  }, []);
+
   const results = !searchPortfolio
     ? portfolios
     : portfolios.filter(portfolio =>
+        portfolio.nameChildren
+          .toLowerCase()
+          .includes(searchPortfolio.toLocaleLowerCase()),
+      );
+
+  const results2 = !searchPortfolio
+    ? portfoliosWithPermission
+    : portfoliosWithPermission.filter(portfolio =>
         portfolio.nameChildren
           .toLowerCase()
           .includes(searchPortfolio.toLocaleLowerCase()),
@@ -116,6 +135,115 @@ const Dashboard: React.FC = () => {
                 </tr>
               ))}
             </tbody>
+
+            {user.role === 'child' && (
+              <tbody>
+                {results2.map(portfolio => (
+                  <tr key={portfolio._id}>
+                    <td className="name2">
+                      <Link to={`/portfolio/${portfolio._id}`}>
+                        {portfolio.nameChildren}
+                      </Link>
+                    </td>
+
+                    <td className="classroom2">{portfolio.classRoom}</td>
+                    <td className="age2">{portfolio.age}</td>
+                    <td className="last-column2">
+                      <Link to={`/updateportfolio/${portfolio._id}`}>
+                        <FiEdit className="first-icon" />
+                      </Link>
+                      <Link to={`/portfolio/${portfolio._id}`}>
+                        <FiEye />
+                      </Link>
+                      <Link to={`/inviteparent/${portfolio._id}`}>
+                        <FiUserPlus className="last-icon" />
+                      </Link>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            )}
+            {user.role === 'parent' && (
+              <tbody>
+                {results2.map(portfolio => (
+                  <tr key={portfolio._id}>
+                    <td className="name2">
+                      <Link to={`/portfolio/${portfolio._id}`}>
+                        {portfolio.nameChildren}
+                      </Link>
+                    </td>
+
+                    <td className="classroom2">{portfolio.classRoom}</td>
+                    <td className="age2">{portfolio.age}</td>
+                    <td className="last-column2">
+                      <Link to={`/updateportfolio/${portfolio._id}`}>
+                        <FiEdit className="first-icon" />
+                      </Link>
+                      <Link to={`/portfolio/${portfolio._id}`}>
+                        <FiEye />
+                      </Link>
+                      <Link to={`/inviteparent/${portfolio._id}`}>
+                        <FiUserPlus className="last-icon" />
+                      </Link>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            )}
+            {user.role === 'manager' && (
+              <tbody>
+                {results2.map(portfolio => (
+                  <tr key={portfolio._id}>
+                    <td className="name2">
+                      <Link to={`/portfolio/${portfolio._id}`}>
+                        {portfolio.nameChildren}
+                      </Link>
+                    </td>
+
+                    <td className="classroom2">{portfolio.classRoom}</td>
+                    <td className="age2">{portfolio.age}</td>
+                    <td className="last-column2">
+                      <Link to={`/updateportfolio/${portfolio._id}`}>
+                        <FiEdit className="first-icon" />
+                      </Link>
+                      <Link to={`/portfolio/${portfolio._id}`}>
+                        <FiEye />
+                      </Link>
+                      <Link to={`/inviteparent/${portfolio._id}`}>
+                        <FiUserPlus className="last-icon" />
+                      </Link>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            )}
+            {user.role === 'guest' && (
+              <tbody>
+                {results2.map(portfolio => (
+                  <tr key={portfolio._id}>
+                    <td className="name2">
+                      <Link to={`/portfolio/${portfolio._id}`}>
+                        {portfolio.nameChildren}
+                      </Link>
+                    </td>
+
+                    <td className="classroom2">{portfolio.classRoom}</td>
+                    <td className="age2">{portfolio.age}</td>
+                    <td className="last-column2">
+                      <Link to={`/updateportfolio/${portfolio._id}`}>
+                        <FiEdit className="first-icon" />
+                      </Link>
+                      <Link to={`/portfolio/${portfolio._id}`}>
+                        <FiEye />
+                      </Link>
+                      <Link to={`/inviteparent/${portfolio._id}`}>
+                        <FiUserPlus className="last-icon" />
+                      </Link>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            )}
           </table>
         </TableContainer>
       </Content>

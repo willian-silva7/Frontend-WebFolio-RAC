@@ -2,9 +2,6 @@
 
 WebFolio is an application to assist educator to create and manage children's portfolio at institution.
 
-![interface demo](demo/webfolio.gif)
-
-
 ## Installation
 
 To install all development dependencies:
