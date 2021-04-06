@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { FormEvent, useCallback, useEffect, useState } from 'react';
-import { FiArrowLeft, FiHome, FiInfo, FiUser } from 'react-icons/fi';
+import { FiArrowLeft, FiBook, FiHome, FiInfo, FiUser } from 'react-icons/fi';
 import { Link, useHistory, useRouteMatch } from 'react-router-dom';
 import * as Yup from 'yup';
 import Header from '../../components/Header';
@@ -18,11 +18,13 @@ interface PortfolioProps {
   nameChildren: string;
   age: string;
   classRoom: string;
+  institution: string;
 }
 
 const UpdatePortfolio: React.FC = () => {
   const [nameChildren, setNameChildren] = useState('');
   const [classRoom, setClassRoom] = useState('');
+  const [institution, setInstitution] = useState('');
   const [age, setAge] = useState('');
   const { params } = useRouteMatch<PortfolioParams>();
 
@@ -31,6 +33,7 @@ const UpdatePortfolio: React.FC = () => {
       setAge(String(response.data.age));
       setClassRoom(response.data.classRoom);
       setNameChildren(response.data.nameChildren);
+      setInstitution(response.data.institution);
     });
   }, [params]);
 
@@ -46,6 +49,7 @@ const UpdatePortfolio: React.FC = () => {
         nameChildren,
         classRoom,
         age,
+        institution,
       };
 
       try {
@@ -53,6 +57,7 @@ const UpdatePortfolio: React.FC = () => {
           nameChildren: Yup.string().required('Nome é obrigatório'),
           classRoom: Yup.string().required('Nome da turma é obrigatório'),
           age: Yup.string().required('Idade é obrigatória'),
+          institution: Yup.string().required('Instituição é obrigatória'),
         });
 
         await Schema.validate(data, {
@@ -63,6 +68,7 @@ const UpdatePortfolio: React.FC = () => {
           nameChildren,
           age: parseInt(age, 10),
           classRoom,
+          institution,
         });
 
         history.push('/');
@@ -105,7 +111,7 @@ const UpdatePortfolio: React.FC = () => {
         }
       }
     },
-    [nameChildren, classRoom, age, addToast, history, params],
+    [nameChildren, classRoom, age, institution, addToast, history, params],
   );
 
   return (
@@ -159,6 +165,19 @@ const UpdatePortfolio: React.FC = () => {
                 icon={FiHome}
                 onChange={e => {
                   setClassRoom(e.target.value);
+                }}
+              />
+
+              <label htmlFor="institution" className="label">
+                Instituição
+              </label>
+              <Input
+                name="institution"
+                placeholder="Digite aqui o nome da instituição"
+                defaultValue={institution}
+                icon={FiBook}
+                onChange={e => {
+                  setInstitution(e.target.value);
                 }}
               />
 

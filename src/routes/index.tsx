@@ -17,6 +17,7 @@ import Portfolio from '../pages/Portfolio';
 import UpdateObservation from '../pages/UpdateObservation';
 import UpdatePortfolio from '../pages/UpdatePortfolio';
 import InviteParent from '../pages/InviteParent';
+import InstitutionDashboard from '../pages/InstitutionDashbord';
 
 const Routes: React.FC = () => {
   return (
@@ -58,6 +59,11 @@ const Routes: React.FC = () => {
         <Route path="/user/:user+" component={UpdateRole} isPrivate />
         <Route path="/dashboard" component={Dashboard} isPrivate />
         <Route path="/admindashboard" component={AdminDashboard} isPrivate />
+        <Route
+          path="/portfoliobyinstitution"
+          component={InstitutionDashboard}
+          isPrivate
+        />
       </Switch>
     </BrowserRouter>
   );

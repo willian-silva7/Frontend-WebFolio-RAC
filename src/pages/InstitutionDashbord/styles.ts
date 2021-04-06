@@ -58,13 +58,19 @@ export const Title = styled.div`
   font-weight: 700;
   color: var(--color-text-title);
 
-  display: flex;
+  display: block;
   align-items: center;
   justify-content: space-between;
 
   width: 100%;
+  margin-top: 1.72rem;
+  margin-bottom: 1.72rem;
   padding-bottom: 1.6rem;
   border-bottom: 1px solid #fff;
+
+  label {
+    font-weight: 500;
+  }
 
   h1 {
     font-size: 3.87rem;
@@ -247,7 +253,7 @@ export const TableContainer = styled.div`
       }
 
       .last-icon {
-        margin-right: -1.5rem;
+        margin-right: 3.2rem;
         cursor: pointer;
       }
 

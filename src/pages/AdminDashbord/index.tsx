@@ -1,7 +1,7 @@
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { ChangeEvent, useCallback, useEffect, useState } from 'react';
-import { FiEdit, FiEye, FiHome, FiPlus, FiUserPlus } from 'react-icons/fi';
+import { FiArrowLeft, FiEdit, FiEye } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
 import Header from '../../components/Header';
 import api from '../../services/api';
@@ -37,6 +37,12 @@ const AdminDashboard: React.FC = () => {
   return (
     <Container>
       <Header />
+      <Link to="/dashboard" className="arrow-left-icon">
+        <p>
+          <FiArrowLeft />
+          Voltar
+        </p>
+      </Link>
       <Content>
         <Title>
           <h1>Usuários</h1>
@@ -74,6 +80,9 @@ const AdminDashboard: React.FC = () => {
                   <td className="last-column">
                     <Link to={`/user/${user._id}`}>
                       <FiEdit className="first-icon" />
+                    </Link>
+                    <Link to="/portfoliobyinstitution">
+                      <FiEye />
                     </Link>
                   </td>
                 </tr>
