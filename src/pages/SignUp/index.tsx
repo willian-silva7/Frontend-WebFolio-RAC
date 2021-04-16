@@ -3,7 +3,7 @@ import { FiLock, FiMail, FiHome, FiUser } from 'react-icons/fi';
 import { Link, useHistory } from 'react-router-dom';
 import * as Yup from 'yup';
 import getValidationsErrors from '../../utils/getValidationErrors';
-import logoImg from '../../assets/logo.svg';
+import logoImg from '../../assets/logo.png';
 import Input from '../../components/Input';
 import { useToast } from '../../hooks/ToastContext';
 

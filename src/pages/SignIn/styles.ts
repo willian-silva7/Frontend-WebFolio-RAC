@@ -32,6 +32,13 @@ export const Content = styled.div`
 
   animation: ${appearFromLeft} 1s;
 
+  img {
+    margin-top: -15rem;
+    margin-bottom: -20rem;
+    width: 60rem;
+    height: 60rem;
+  }
+
   form {
     margin: 4.3rem 0;
     width: 36.5rem;
@@ -106,6 +113,13 @@ export const Content = styled.div`
       h1 {
         margin-bottom: 2.58rem;
       }
+    }
+
+    img {
+      margin-top: -15rem;
+      margin-bottom: -25rem;
+      width: 60rem;
+      height: 60rem;
     }
   }
 `;

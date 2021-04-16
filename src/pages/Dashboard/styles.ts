@@ -246,6 +246,15 @@ export const TableContainer = styled.div`
         cursor: pointer;
       }
 
+      .last-column2 {
+        text-align: end;
+      }
+
+      .last-icon2 {
+        margin-right: -1.5rem;
+        cursor: pointer;
+      }
+
       a {
         text-decoration: none;
         margin-right: 0.9rem;

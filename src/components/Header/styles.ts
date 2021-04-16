@@ -18,6 +18,7 @@ export const HeaderContent = styled.div`
 
   @media (max-width: 699px) {
     margin-left: 0.43rem;
+    margin-right: 1.6rem;
   }
 `;
 
@@ -59,5 +60,6 @@ export const Profile = styled.div`
 
   @media (max-width: 699px) {
     margin-right: 0.86rem;
+    margin-left: -1.29rem;
   }
 `;

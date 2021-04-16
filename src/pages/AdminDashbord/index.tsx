@@ -43,6 +43,7 @@ const AdminDashboard: React.FC = () => {
           Voltar
         </p>
       </Link>
+
       <Content>
         <Title>
           <h1>Usuários</h1>
@@ -63,7 +64,7 @@ const AdminDashboard: React.FC = () => {
           <table>
             <thead>
               <th>Nome</th>
-              <th>Email</th>
+              <th className="email">Email</th>
               <th>Cargo</th>
               <th className="last-column">Opções</th>
             </thead>
@@ -75,14 +76,14 @@ const AdminDashboard: React.FC = () => {
                     <Link to={`/user/${user._id}`}>{user.name}</Link>
                   </td>
 
-                  <td className="classroom">{user.email}</td>
-                  <td className="classroom">{user.role}</td>
+                  <td className="email">{user.email}</td>
+                  <td className="role">{user.role}</td>
                   <td className="last-column">
                     <Link to={`/user/${user._id}`}>
                       <FiEdit className="first-icon" />
                     </Link>
                     <Link to="/portfoliobyinstitution">
-                      <FiEye />
+                      <FiEye className="last-icon" />
                     </Link>
                   </td>
                 </tr>

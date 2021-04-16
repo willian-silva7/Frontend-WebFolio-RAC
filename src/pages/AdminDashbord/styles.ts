@@ -35,6 +35,7 @@ export const Container = styled.div`
 
 export const Content = styled.div`
   background: var(--color-box-base);
+  /* overflow: hidden; */
   width: 100%;
   max-width: 120rem;
   border-radius: 0.8rem;
@@ -58,13 +59,19 @@ export const Title = styled.div`
   font-weight: 700;
   color: var(--color-text-title);
 
-  display: flex;
+  display: block;
   align-items: center;
   justify-content: space-between;
 
   width: 100%;
+  margin-top: 1.72rem;
+  margin-bottom: 1.72rem;
   padding-bottom: 1.6rem;
   border-bottom: 1px solid #fff;
+
+  label {
+    font-weight: 500;
+  }
 
   h1 {
     font-size: 3.87rem;
@@ -190,7 +197,7 @@ export const TableContainer = styled.div`
       a {
         color: var(--color-box-base);
       }
-      background-color: var(--color-portfolio);
+      background-color: var(--color-text-in-input);
       padding: 2.15rem 1.44rem;
       font-weight: 600;
 
@@ -247,7 +254,7 @@ export const TableContainer = styled.div`
       }
 
       .last-icon {
-        margin-right: -1.5rem;
+        margin-right: 0;
         cursor: pointer;
       }
 
@@ -268,6 +275,12 @@ export const TableContainer = styled.div`
         margin-left: 0.9rem;
         margin-top: 0;
       }
+    }
+  }
+
+  @media (max-width: 699px) {
+    .email {
+      display: none;
     }
   }
 `;

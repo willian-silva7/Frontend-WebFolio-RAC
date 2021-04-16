@@ -93,6 +93,9 @@ const UpdateUser: React.FC = () => {
               </label>
 
               <select name="role" id="role" onChange={handleselectroles}>
+                <option value="" disabled selected hidden>
+                  Selecione uma opção
+                </option>
                 <option value="admin">Administrador</option>
                 <option value="teacher">Professor</option>
                 <option value="parent">Parente</option>

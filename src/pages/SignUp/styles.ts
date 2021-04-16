@@ -32,6 +32,13 @@ export const Content = styled.div`
 
   animation: ${appearFromLeft} 1s;
 
+  img {
+    margin-top: -5rem;
+    margin-bottom: -20rem;
+    width: 60rem;
+    height: 60rem;
+  }
+
   form {
     margin: 4.3rem 0;
     width: 36.5rem;

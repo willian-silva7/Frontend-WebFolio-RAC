@@ -4,7 +4,6 @@ import React, { ChangeEvent, useCallback, useEffect, useState } from 'react';
 import { FiArrowLeft, FiUserPlus } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
 import Header from '../../components/Header';
-// import { useAuth } from '../../hooks/AuthContext';
 import api from '../../services/api';
 import { Container, Content, Title, Search, TableContainer } from './styles';
 
@@ -18,7 +17,6 @@ interface PortfoliosProps {
 const Dashboard: React.FC = () => {
   const [portfolios, setPortifolios] = useState<PortfoliosProps[]>([]);
   const [searchPortfolio, setSearchPortfolio] = useState('');
-  // const { user } = useAuth();
 
   useEffect(() => {
     api.get('/institution').then(response => {
