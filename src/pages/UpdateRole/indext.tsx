@@ -27,11 +27,7 @@ const UpdateUser: React.FC = () => {
   const [role, setRole] = useState('');
   const [userinfo, setuserInfo] = useState<UserProps>();
 
-  const [selectedroles, setSelectedroles] = useState('0');
-
   const { params } = useRouteMatch<UserParams>();
-
-  console.log(params);
 
   const { addToast } = useToast();
 
@@ -64,7 +60,6 @@ const UpdateUser: React.FC = () => {
     (event: ChangeEvent<HTMLSelectElement>) => {
       const roles = event.target.value;
 
-      setSelectedroles(roles);
       setRole(roles);
     },
     [],
