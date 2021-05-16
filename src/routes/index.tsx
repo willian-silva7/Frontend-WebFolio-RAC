@@ -14,6 +14,7 @@ import CreatePortfolio from '../pages/CreatePortfolio';
 import CreateObservation from '../pages/CreateObservation';
 import CreateObservationToClass from '../pages/CreateObservationToClass';
 import Portfolio from '../pages/Portfolio';
+import PortfolioWithEmailPermission from '../pages/PortfolioWithEmailPermission';
 import UpdateObservation from '../pages/UpdateObservation';
 import UpdatePortfolio from '../pages/UpdatePortfolio';
 import InviteParent from '../pages/InviteParent';
@@ -51,6 +52,11 @@ const Routes: React.FC = () => {
           isPrivate
         />
         <Route path="/portfolio/:portfolio+" component={Portfolio} isPrivate />
+        <Route
+          path="/portfoliowithpermission/:portfolio+"
+          component={PortfolioWithEmailPermission}
+          isPrivate
+        />
         <Route
           path="/inviteparent/:portfolio+"
           component={InviteParent}

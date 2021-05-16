@@ -181,7 +181,7 @@ const Dashboard: React.FC = () => {
                   <td className="classroom2">{portfolio.classRoom}</td>
                   <td className="age2">{portfolio.age}</td>
                   <td className="last-column2">
-                    <Link to={`/portfolio/${portfolio._id}`}>
+                    <Link to={`/portfoliowithpermission/${portfolio._id}`}>
                       <FiEye className="last-icon" />
                     </Link>
                   </td>
