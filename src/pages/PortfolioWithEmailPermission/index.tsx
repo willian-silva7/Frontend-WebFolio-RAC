@@ -1,8 +1,8 @@
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable camelcase */
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React, { useCallback, useEffect, useState } from 'react';
-import { FiArrowLeft, FiEdit, FiPlus, FiX } from 'react-icons/fi';
+import React, { useEffect, useState } from 'react';
+import { FiArrowLeft } from 'react-icons/fi';
 import { Link, useRouteMatch } from 'react-router-dom';
 import AudioPlayer from 'react-audio-player';
 import VideoPlayer from 'react-player';
@@ -15,11 +15,8 @@ import {
   Subtitle,
   Card,
   PortfolioTitle,
-  PortfolioIcons,
   Files,
 } from './styles';
-import { useAuth } from '../../hooks/AuthContext';
-import { useToast } from '../../hooks/ToastContext';
 
 interface Observation {
   _id: string;
@@ -53,8 +50,6 @@ const Portfolio: React.FC = () => {
   const [portfolioinfo, setPortfolioInfo] = useState<PortfolioProps>();
   const [observations, setObservations] = useState<Observation[]>([]);
   const { params } = useRouteMatch<PortfolioParams>();
-  const { user } = useAuth();
-  const { addToast } = useToast();
 
   useEffect(() => {
     api.get(`portfolio/${params.portfolio}`).then(response => {
@@ -62,22 +57,6 @@ const Portfolio: React.FC = () => {
       setObservations(response.data.observations);
     });
   }, [params.portfolio]);
-
-  const handleDelete = useCallback(
-    async (id: string) => {
-      await api.delete(`portfolio/${params.portfolio}/observation/${id}`);
-
-      const newObservations = observations.filter(item => item._id !== id);
-      setObservations(newObservations);
-
-      addToast({
-        type: 'success',
-        title: 'Observação removida com sucesso',
-        description: 'A observação foi excluída do portfólio',
-      });
-    },
-    [params.portfolio, observations, addToast],
-  );
 
   return (
     <Container>
