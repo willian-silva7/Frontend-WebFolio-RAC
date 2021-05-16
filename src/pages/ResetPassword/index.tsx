@@ -3,7 +3,7 @@ import * as Yup from 'yup';
 import { useHistory, useLocation } from 'react-router-dom';
 import { FiLock } from 'react-icons/fi';
 import getValidationErrors from '../../utils/getValidationErrors';
-import logoImg from '../../assets/logo.png';
+import logoImg from '../../assets/logo.svg';
 import { Container, Content, Background } from './styles';
 import { useToast } from '../../hooks/ToastContext';
 import Input from '../../components/Input';

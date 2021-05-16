@@ -143,7 +143,7 @@ const UpdateObservation: React.FC = () => {
               />
 
               <label htmlFor="notes" className="label">
-                Notas
+                Notas/Avaliação
               </label>
               <Textarea
                 name="notes"

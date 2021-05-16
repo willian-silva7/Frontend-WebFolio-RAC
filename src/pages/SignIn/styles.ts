@@ -33,10 +33,10 @@ export const Content = styled.div`
   animation: ${appearFromLeft} 1s;
 
   img {
-    margin-top: -15rem;
-    margin-bottom: -20rem;
-    width: 60rem;
-    height: 60rem;
+    margin-top: 4rem;
+    margin-bottom: -5rem;
+    width: 40rem;
+    height: 40rem;
   }
 
   form {
@@ -91,6 +91,7 @@ export const Content = styled.div`
     color: var(--color-form);
     display: block;
     margin-top: 2.58rem;
+    margin-bottom: 2.58rem;
     text-decoration: none;
     transition: color 0.2s;
 
@@ -116,10 +117,19 @@ export const Content = styled.div`
     }
 
     img {
-      margin-top: -15rem;
+      /* margin-top: -15rem;
       margin-bottom: -25rem;
       width: 60rem;
-      height: 60rem;
+      height: 60rem; */
+    }
+  }
+
+  @media (max-width: 600px) {
+    img {
+      /* margin-top: -15rem;
+      margin-bottom: -25rem; */
+      width: 40rem;
+      height: 40rem;
     }
   }
 `;

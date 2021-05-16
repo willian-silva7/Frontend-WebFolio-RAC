@@ -22,7 +22,7 @@ export const Container = styled.div`
       display: flex;
       margin-top: 1rem;
       margin-bottom: -2rem;
-      margin-left: 45rem;
+      margin-left: 35rem;
       color: var(--color-arrow-left);
       animation: ${appearFromLeft} 1s;
     }

@@ -1,11 +1,18 @@
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { ChangeEvent, useCallback, useEffect, useState } from 'react';
-import { FiArrowLeft, FiUserPlus } from 'react-icons/fi';
-import { Link } from 'react-router-dom';
+import { FiArrowLeft, FiEye, FiX, FiEyeOff } from 'react-icons/fi';
+import { Link, useRouteMatch } from 'react-router-dom';
 import Header from '../../components/Header';
+import { useToast } from '../../hooks/ToastContext';
 import api from '../../services/api';
 import { Container, Content, Title, Search, TableContainer } from './styles';
+
+// adicionar rota para linkar usuário ao portfólio
+
+interface UserParams {
+  user: string;
+}
 
 interface PortfoliosProps {
   _id: string;
@@ -17,6 +24,9 @@ interface PortfoliosProps {
 const Dashboard: React.FC = () => {
   const [portfolios, setPortifolios] = useState<PortfoliosProps[]>([]);
   const [searchPortfolio, setSearchPortfolio] = useState('');
+
+  const { params } = useRouteMatch<UserParams>();
+  const { addToast } = useToast();
 
   useEffect(() => {
     api.get('/institution').then(response => {
@@ -36,6 +46,42 @@ const Dashboard: React.FC = () => {
     setSearchPortfolio(event.target.value);
   }, []);
 
+  const handleDelete = useCallback(
+    async (id: string) => {
+      await api.delete(`portfolio/${id}`);
+      const portfolioIndex = portfolios.findIndex(item => item._id === id);
+      portfolios.splice(portfolioIndex, 1);
+      setPortifolios([...portfolios]);
+    },
+    [portfolios],
+  );
+
+  const handleAdd = useCallback(
+    async (id: string) => {
+      await api.put(`managers/${id}/permission/${params.user}`);
+
+      addToast({
+        type: 'success',
+        title: 'Permissão atualizada com sucesso',
+        description: 'Esta pessoa agora pode acessar o portfólio',
+      });
+    },
+    [params.user, addToast],
+  );
+
+  const handleRemove = useCallback(
+    async (id: string) => {
+      await api.put(`managers/${id}/permissiondelete/${params.user}`);
+
+      addToast({
+        type: 'success',
+        title: 'Permissão atualizada com sucesso',
+        description: 'Esta pessoa agora não pode acessar o portfólio',
+      });
+    },
+    [params.user, addToast],
+  );
+
   return (
     <Container>
       <Header />
@@ -48,8 +94,8 @@ const Dashboard: React.FC = () => {
 
       <Content>
         <Title>
-          <h1>Portifólios</h1>
-          <label>Adicione permissão do usuário ao Portfólio</label>
+          <h1>Portifólios da Instituição</h1>
+          <label>Adicione ou retire permissão do utilizador ao Portfólio</label>
         </Title>
 
         <Search>
@@ -84,9 +130,24 @@ const Dashboard: React.FC = () => {
                   <td className="classroom">{portfolio.classRoom}</td>
                   <td className="age">{portfolio.age}</td>
                   <td className="last-column">
-                    <Link to={`/inviteparent/${portfolio._id}`}>
-                      <FiUserPlus className="last-icon" />
-                    </Link>
+                    <button
+                      type="button"
+                      onClick={() => handleAdd(portfolio._id)}
+                    >
+                      <FiEye className="first-icon" />
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => handleRemove(portfolio._id)}
+                    >
+                      <FiEyeOff />
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => handleDelete(portfolio._id)}
+                    >
+                      <FiX className="last-icon" />
+                    </button>
                   </td>
                 </tr>
               ))}

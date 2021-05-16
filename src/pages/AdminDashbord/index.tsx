@@ -1,7 +1,7 @@
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { ChangeEvent, useCallback, useEffect, useState } from 'react';
-import { FiArrowLeft, FiEdit, FiEye } from 'react-icons/fi';
+import { FiArrowLeft, FiEdit, FiUnlock } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
 import Header from '../../components/Header';
 import api from '../../services/api';
@@ -82,8 +82,8 @@ const AdminDashboard: React.FC = () => {
                     <Link to={`/user/${user._id}`}>
                       <FiEdit className="first-icon" />
                     </Link>
-                    <Link to="/portfoliobyinstitution">
-                      <FiEye className="last-icon" />
+                    <Link to={`/portfoliobyinstitution/${user._id}`}>
+                      <FiUnlock className="last-icon" />
                     </Link>
                   </td>
                 </tr>

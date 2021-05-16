@@ -60,7 +60,7 @@ const Routes: React.FC = () => {
         <Route path="/dashboard" component={Dashboard} isPrivate />
         <Route path="/admindashboard" component={AdminDashboard} isPrivate />
         <Route
-          path="/portfoliobyinstitution"
+          path="/portfoliobyinstitution/:user+"
           component={InstitutionDashboard}
           isPrivate
         />

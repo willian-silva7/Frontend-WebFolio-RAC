@@ -19,6 +19,7 @@ import {
   Files,
 } from './styles';
 import { useAuth } from '../../hooks/AuthContext';
+import { useToast } from '../../hooks/ToastContext';
 
 interface Observation {
   _id: string;
@@ -53,6 +54,7 @@ const Portfolio: React.FC = () => {
   const [observations, setObservations] = useState<Observation[]>([]);
   const { params } = useRouteMatch<PortfolioParams>();
   const { user } = useAuth();
+  const { addToast } = useToast();
 
   useEffect(() => {
     api.get(`portfolio/${params.portfolio}`).then(response => {
@@ -64,11 +66,17 @@ const Portfolio: React.FC = () => {
   const handleDelete = useCallback(
     async (id: string) => {
       await api.delete(`portfolio/${params.portfolio}/observation/${id}`);
-      const observationIndex = observations.findIndex(item => item._id === id);
-      observations.splice(observationIndex, 1);
-      setObservations([...observations]);
+
+      const newObservations = observations.filter(item => item._id !== id);
+      setObservations(newObservations);
+
+      addToast({
+        type: 'success',
+        title: 'Observação removida com sucesso',
+        description: 'A observação foi excluída do portfólio',
+      });
     },
-    [params.portfolio, observations],
+    [params.portfolio, observations, addToast],
   );
 
   return (
@@ -88,7 +96,32 @@ const Portfolio: React.FC = () => {
               Portifólio de
               {` ${portfolioinfo?.nameChildren}`}
             </h1>
-            {user._id === portfolioinfo?.educator && (
+            {/* {user._id === portfolioinfo?.educator && (
+              <Link to={`/createobservation/${params.portfolio}`}>
+                <div>
+                  <FiPlus size={20} />
+                </div>
+                <label>Criar Nova Observação</label>
+              </Link>
+            )} */}
+
+            {user.role === 'manager' && (
+              <Link to={`/createobservation/${params.portfolio}`}>
+                <div>
+                  <FiPlus size={20} />
+                </div>
+                <label>Criar Nova Observação</label>
+              </Link>
+            )}
+            {user.role === 'admin' && (
+              <Link to={`/createobservation/${params.portfolio}`}>
+                <div>
+                  <FiPlus size={20} />
+                </div>
+                <label>Criar Nova Observação</label>
+              </Link>
+            )}
+            {user.role === 'teacher' && (
               <Link to={`/createobservation/${params.portfolio}`}>
                 <div>
                   <FiPlus size={20} />
@@ -99,7 +132,7 @@ const Portfolio: React.FC = () => {
           </Title>
 
           <Subtitle>
-            <label htmlFor="name">Educator (a): </label>
+            <label htmlFor="name">Educador (a): </label>
             <label htmlFor="name">{portfolioinfo?.educator_name}</label>
           </Subtitle>
 
@@ -108,20 +141,52 @@ const Portfolio: React.FC = () => {
             <Card key={observation._id}>
               <PortfolioTitle>
                 <h3>{observation.title}</h3>
-                {user._id === portfolioinfo?.educator && (
+                {user.role === 'admin' && (
                   <PortfolioIcons>
+                    <Link
+                      to={`/updateobservation/${params.portfolio}/${observation._id}`}
+                    >
+                      <FiEdit size={20} />
+                    </Link>
+
                     <button
                       type="button"
                       onClick={() => handleDelete(observation._id)}
                     >
                       <FiX size={20} />
                     </button>
-
+                  </PortfolioIcons>
+                )}
+                {user.role === 'teacher' && (
+                  <PortfolioIcons>
                     <Link
                       to={`/updateobservation/${params.portfolio}/${observation._id}`}
                     >
                       <FiEdit size={20} />
                     </Link>
+
+                    <button
+                      type="button"
+                      onClick={() => handleDelete(observation._id)}
+                    >
+                      <FiX size={20} />
+                    </button>
+                  </PortfolioIcons>
+                )}
+                {user.role === 'manager' && (
+                  <PortfolioIcons>
+                    <Link
+                      to={`/updateobservation/${params.portfolio}/${observation._id}`}
+                    >
+                      <FiEdit size={20} />
+                    </Link>
+
+                    <button
+                      type="button"
+                      onClick={() => handleDelete(observation._id)}
+                    >
+                      <FiX size={20} />
+                    </button>
                   </PortfolioIcons>
                 )}
               </PortfolioTitle>

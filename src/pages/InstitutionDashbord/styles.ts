@@ -22,7 +22,7 @@ export const Container = styled.div`
       display: flex;
       margin-top: 1rem;
       margin-bottom: -2rem;
-      margin-left: 29rem;
+      margin-left: 17rem;
       color: var(--color-arrow-left);
       animation: ${appearFromLeft} 1s;
     }
@@ -207,6 +207,13 @@ export const TableContainer = styled.div`
       font-size: 1.72rem;
     }
 
+    button {
+      border: none;
+      background: transparent;
+      color: var(--color-box-base);
+      /* margin-right: 0.86rem; */
+    }
+
     a {
       text-decoration: none;
       margin-right: 0.9rem;
@@ -253,7 +260,12 @@ export const TableContainer = styled.div`
       }
 
       .last-icon {
-        margin-right: 3.2rem;
+        margin-left: 0.86rem;
+        cursor: pointer;
+      }
+
+      .first-icon {
+        margin-right: 0.86rem;
         cursor: pointer;
       }
 

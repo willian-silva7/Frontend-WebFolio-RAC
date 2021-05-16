@@ -183,17 +183,31 @@ export const TableContainer = styled.div`
     }
 
     .classroom2 {
-      background-color: var(--color-onblur);
+      background-color: var(--color-portfolio-table2);
     }
     .age2 {
-      background-color: var(--color-onblur);
+      background-color: var(--color-portfolio-table2);
     }
     .last-column2 {
-      background-color: var(--color-onblur);
+      background-color: var(--color-portfolio-table2);
       text-align: end;
     }
     .name2 {
-      background-color: var(--color-onblur);
+      background-color: var(--color-portfolio-table2);
+    }
+
+    .classroom3 {
+      background-color: var(--title-color);
+    }
+    .age3 {
+      background-color: var(--title-color);
+    }
+    .last-column3 {
+      background-color: var(--title-color);
+      text-align: end;
+    }
+    .name3 {
+      background-color: var(--title-color);
     }
 
     a {

@@ -31,6 +31,8 @@ const UpdateUser: React.FC = () => {
 
   const { params } = useRouteMatch<UserParams>();
 
+  console.log(params);
+
   const { addToast } = useToast();
 
   const history = useHistory();

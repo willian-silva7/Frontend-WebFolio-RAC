@@ -24,6 +24,9 @@ interface PortfoliosProps {
 
 const Dashboard: React.FC = () => {
   const [portfolios, setPortifolios] = useState<PortfoliosProps[]>([]);
+  const [portfoliosManager, setPortifoliosManager] = useState<
+    PortfoliosProps[]
+  >([]);
   const [portfoliosWithPermission, setPortifoliosWithPermission] = useState<
     PortfoliosProps[]
   >([]);
@@ -39,6 +42,12 @@ const Dashboard: React.FC = () => {
   useEffect(() => {
     api.get('/permission').then(response => {
       setPortifoliosWithPermission(response.data);
+    });
+  }, []);
+
+  useEffect(() => {
+    api.get('/managers').then(response => {
+      setPortifoliosManager(response.data);
     });
   }, []);
 
@@ -58,6 +67,14 @@ const Dashboard: React.FC = () => {
           .includes(searchPortfolio.toLocaleLowerCase()),
       );
 
+  const results3 = !searchPortfolio
+    ? portfoliosManager
+    : portfoliosManager.filter(portfolio =>
+        portfolio.nameChildren
+          .toLowerCase()
+          .includes(searchPortfolio.toLocaleLowerCase()),
+      );
+
   const handleChange = useCallback((event: ChangeEvent<HTMLInputElement>) => {
     setSearchPortfolio(event.target.value);
   }, []);
@@ -69,12 +86,28 @@ const Dashboard: React.FC = () => {
         <Title>
           <h1>Portifólios</h1>
 
-          <Link to="/createportfolio">
+          {/* <Link to="/createportfolio">
             <div>
               <FiPlus size={20} />
             </div>
             <label>Criar Novo Portfólio</label>
-          </Link>
+          </Link> */}
+          {user.role === 'admin' && (
+            <Link to="/createportfolio">
+              <div>
+                <FiPlus size={20} />
+              </div>
+              <label>Criar Novo Portfólio</label>
+            </Link>
+          )}
+          {user.role === 'teacher' && (
+            <Link to="/createportfolio">
+              <div>
+                <FiPlus size={20} />
+              </div>
+              <label>Criar Novo Portfólio</label>
+            </Link>
+          )}
         </Title>
 
         {portfolios.length > 1 && (
@@ -136,114 +169,76 @@ const Dashboard: React.FC = () => {
               ))}
             </tbody>
 
-            {user.role === 'child' && (
-              <tbody>
-                {results2.map(portfolio => (
-                  <tr key={portfolio._id}>
-                    <td className="name2">
-                      <Link to={`/portfolio/${portfolio._id}`}>
-                        {portfolio.nameChildren}
-                      </Link>
-                    </td>
+            <tbody>
+              {results2.map(portfolio => (
+                <tr key={portfolio._id}>
+                  <td className="name2">
+                    <Link to={`/portfolio/${portfolio._id}`}>
+                      {portfolio.nameChildren}
+                    </Link>
+                  </td>
 
-                    <td className="classroom2">{portfolio.classRoom}</td>
-                    <td className="age2">{portfolio.age}</td>
-                    <td className="last-column2">
+                  <td className="classroom2">{portfolio.classRoom}</td>
+                  <td className="age2">{portfolio.age}</td>
+                  <td className="last-column2">
+                    <Link to={`/portfolio/${portfolio._id}`}>
+                      <FiEye className="last-icon" />
+                    </Link>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+
+            <tbody>
+              {results3.map(portfolio => (
+                <tr key={portfolio._id}>
+                  <td className="name3">
+                    <Link to={`/portfolio/${portfolio._id}`}>
+                      {portfolio.nameChildren}
+                    </Link>
+                  </td>
+
+                  <td className="classroom3">{portfolio.classRoom}</td>
+                  <td className="age3">{portfolio.age}</td>
+                  <td className="last-column3">
+                    {user.role === 'child' && (
                       <Link to={`/updateportfolio/${portfolio._id}`}>
                         <FiEdit className="first-icon" />
                       </Link>
-                      <Link to={`/portfolio/${portfolio._id}`}>
-                        <FiEye />
-                      </Link>
-                      <Link to={`/inviteparent/${portfolio._id}`}>
-                        <FiUserPlus className="last-icon" />
-                      </Link>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            )}
-            {user.role === 'parent' && (
-              <tbody>
-                {results2.map(portfolio => (
-                  <tr key={portfolio._id}>
-                    <td className="name2">
-                      <Link to={`/portfolio/${portfolio._id}`}>
-                        {portfolio.nameChildren}
-                      </Link>
-                    </td>
-
-                    <td className="classroom2">{portfolio.classRoom}</td>
-                    <td className="age2">{portfolio.age}</td>
-                    <td className="last-column2">
+                    )}
+                    {user.role === 'admin' && (
                       <Link to={`/updateportfolio/${portfolio._id}`}>
                         <FiEdit className="first-icon" />
                       </Link>
-                      <Link to={`/portfolio/${portfolio._id}`}>
-                        <FiEye />
-                      </Link>
-                      <Link to={`/inviteparent/${portfolio._id}`}>
-                        <FiUserPlus className="last-icon" />
-                      </Link>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            )}
-            {user.role === 'manager' && (
-              <tbody>
-                {results2.map(portfolio => (
-                  <tr key={portfolio._id}>
-                    <td className="name2">
-                      <Link to={`/portfolio/${portfolio._id}`}>
-                        {portfolio.nameChildren}
-                      </Link>
-                    </td>
-
-                    <td className="classroom2">{portfolio.classRoom}</td>
-                    <td className="age2">{portfolio.age}</td>
-                    <td className="last-column2">
+                    )}
+                    {user.role === 'teacher' && (
                       <Link to={`/updateportfolio/${portfolio._id}`}>
                         <FiEdit className="first-icon" />
                       </Link>
-                      <Link to={`/portfolio/${portfolio._id}`}>
-                        <FiEye />
-                      </Link>
-                      <Link to={`/inviteparent/${portfolio._id}`}>
-                        <FiUserPlus className="last-icon" />
-                      </Link>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            )}
-            {user.role === 'guest' && (
-              <tbody>
-                {results2.map(portfolio => (
-                  <tr key={portfolio._id}>
-                    <td className="name2">
-                      <Link to={`/portfolio/${portfolio._id}`}>
-                        {portfolio.nameChildren}
-                      </Link>
-                    </td>
+                    )}
 
-                    <td className="classroom2">{portfolio.classRoom}</td>
-                    <td className="age2">{portfolio.age}</td>
-                    <td className="last-column2">
-                      <Link to={`/updateportfolio/${portfolio._id}`}>
-                        <FiEdit className="first-icon" />
-                      </Link>
-                      <Link to={`/portfolio/${portfolio._id}`}>
+                    <Link to={`/portfolio/${portfolio._id}`}>
+                      {user.role === 'child' ? (
+                        <FiEye className="last-icon" />
+                      ) : (
                         <FiEye />
-                      </Link>
+                      )}
+                    </Link>
+
+                    {user.role === 'admin' && (
                       <Link to={`/inviteparent/${portfolio._id}`}>
                         <FiUserPlus className="last-icon" />
                       </Link>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            )}
+                    )}
+                    {user.role === 'teacher' && (
+                      <Link to={`/inviteparent/${portfolio._id}`}>
+                        <FiUserPlus className="last-icon" />
+                      </Link>
+                    )}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
           </table>
         </TableContainer>
       </Content>
