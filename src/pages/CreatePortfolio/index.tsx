@@ -129,7 +129,7 @@ const CreatePortfolio: React.FC = () => {
               />
 
               <label htmlFor="classroom" className="label">
-                Turma/Classe
+                Grupo
               </label>
               <Input
                 name="classroom"

@@ -5,7 +5,14 @@ import { FiArrowLeft, FiEdit, FiUnlock } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
 import Header from '../../components/Header';
 import api from '../../services/api';
-import { Container, Content, Title, Search, TableContainer } from './styles';
+import {
+  Container,
+  Content,
+  Title,
+  Search,
+  TableContainer,
+  Tutorial,
+} from './styles';
 
 interface UsersProps {
   _id: string;
@@ -59,6 +66,31 @@ const AdminDashboard: React.FC = () => {
             defaultValue={searchUser}
           />
         </Search>
+
+        <Tutorial>
+          <table>
+            <tbody>
+              <tr>
+                <td>
+                  <span>Opções:</span>
+                </td>
+                <td className="icon">
+                  <FiEdit />
+                </td>
+                <td>
+                  <span>- Editar Cargo</span>
+                </td>
+
+                <td className="icon">
+                  <FiUnlock />
+                </td>
+                <td>
+                  <span>- Associar Portfólios</span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </Tutorial>
 
         <TableContainer>
           <table>

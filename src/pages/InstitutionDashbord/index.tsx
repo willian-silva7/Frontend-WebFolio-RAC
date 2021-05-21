@@ -6,7 +6,14 @@ import { Link, useRouteMatch } from 'react-router-dom';
 import Header from '../../components/Header';
 import { useToast } from '../../hooks/ToastContext';
 import api from '../../services/api';
-import { Container, Content, Title, Search, TableContainer } from './styles';
+import {
+  Container,
+  Content,
+  Title,
+  Search,
+  TableContainer,
+  Tutorial,
+} from './styles';
 
 // adicionar rota para linkar usuário ao portfólio
 
@@ -108,6 +115,38 @@ const Dashboard: React.FC = () => {
             defaultValue={searchPortfolio}
           />
         </Search>
+
+        <Tutorial>
+          <table>
+            <tbody>
+              <tr>
+                <td>
+                  <span>Opções:</span>
+                </td>
+                <td className="icon">
+                  <FiEye />
+                </td>
+                <td>
+                  <span>:Associar Portfólio</span>
+                </td>
+
+                <td className="icon">
+                  <FiEyeOff />
+                </td>
+                <td>
+                  <span>:Desassociar portfólio</span>
+                </td>
+
+                <td className="icon">
+                  <FiX />
+                </td>
+                <td>
+                  <span>:Excluir Portfólio</span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </Tutorial>
 
         <TableContainer>
           <table>

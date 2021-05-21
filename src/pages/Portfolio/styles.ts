@@ -257,3 +257,34 @@ export const Files = styled.div`
     }
   }
 `;
+
+export const Tutorial = styled.div`
+  display: none;
+  @media (min-width: 700px) {
+    display: flex;
+
+    padding-left: 2.3rem;
+    padding-bottom: 2.5rem;
+    margin-top: -4rem;
+
+    th {
+      text-align: right;
+    }
+
+    td {
+      text-align: left;
+      color: var(--color-text-in-input);
+    }
+
+    span {
+      margin-right: 9rem;
+    }
+
+    svg {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-right: 0.5rem;
+    }
+  }
+`;

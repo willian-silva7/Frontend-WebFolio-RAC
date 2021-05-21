@@ -50,12 +50,14 @@ const UpdateObservation: React.FC = () => {
       setTitle(`${observation?.title}`);
       setNotes(`${observation?.notes}`);
       setDescription(`${observation?.description}`);
+      setDateDay(`${observation?.dateDay}`);
     });
   }, [
     params.observation,
     observation?.title,
     observation?.notes,
     observation?.description,
+    observation?.dateDay,
   ]);
 
   const handleSubmit = useCallback(

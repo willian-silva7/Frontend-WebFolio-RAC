@@ -96,6 +96,18 @@ const CreateObservation: React.FC = () => {
                 }}
               />
 
+              <label htmlFor="dateDay" className="label">
+                Data da Observação
+              </label>
+              <Input
+                name="dateDay"
+                type="date"
+                icon={FiBook}
+                onChange={e => {
+                  setDateDay(e.target.value);
+                }}
+              />
+
               <label htmlFor="description" className="label">
                 Descrição da Observação
               </label>
@@ -117,18 +129,6 @@ const CreateObservation: React.FC = () => {
                 icon={FiBookOpen}
                 onChange={e => {
                   setNotes(e.target.value);
-                }}
-              />
-
-              <label htmlFor="dateDay" className="label">
-                Data da Observação
-              </label>
-              <Input
-                name="dateDay"
-                type="date"
-                icon={FiBook}
-                onChange={e => {
-                  setDateDay(e.target.value);
                 }}
               />
 

@@ -13,6 +13,7 @@ import {
   Search,
   TableContainer,
   SubTitle,
+  Tutorial,
 } from './styles';
 
 interface PortfoliosProps {
@@ -123,6 +124,41 @@ const Dashboard: React.FC = () => {
           </SubTitle>
         )}
 
+        {/* <Tutorial>
+          <table>
+            <thead>
+              <th>Ícones</th>
+              <th> </th>
+            </thead>
+            <tbody>
+              <tr>
+                <td className="icon">
+                  <FiEdit />
+                </td>
+                <td>
+                  <span>:Editar Portfólio</span>
+                </td>
+              </tr>
+              <tr>
+                <td className="icon">
+                  <FiEye />
+                </td>
+                <td>
+                  <span>:Visualizar portfólio</span>
+                </td>
+              </tr>
+              <tr>
+                <td className="icon">
+                  <FiUserPlus />
+                </td>
+                <td>
+                  <span>:Convidar Parente</span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </Tutorial> */}
+
         <Search>
           <label htmlFor="name">Buscar Portfólios:</label>
           <input
@@ -133,6 +169,36 @@ const Dashboard: React.FC = () => {
             defaultValue={searchPortfolio}
           />
         </Search>
+
+        <Tutorial>
+          <table>
+            <tbody>
+              <tr>
+                <td>
+                  <span>Opções:</span>
+                </td>
+                <td className="icon">
+                  <FiEdit />
+                </td>
+                <td>
+                  <span>- Editar Portfólio</span>
+                </td>
+                <td className="icon">
+                  <FiEye />
+                </td>
+                <td>
+                  <span>- Visualizar portfólio</span>
+                </td>
+                <td className="icon">
+                  <FiUserPlus />
+                </td>
+                <td>
+                  <span>- Convidar Parente</span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </Tutorial>
 
         <TableContainer>
           <table>

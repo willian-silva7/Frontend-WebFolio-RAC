@@ -170,18 +170,6 @@ const CreateObservationToClass: React.FC = () => {
                 }}
               />
 
-              <label htmlFor="description" className="label">
-                Descrição da Observação
-              </label>
-              <Textarea
-                name="description"
-                placeholder="Digite aqui a descrição da observação"
-                icon={FiInfo}
-                onChange={e => {
-                  setDescription(e.target.value);
-                }}
-              />
-
               <label htmlFor="dateDay" className="label">
                 Data da Observação
               </label>
@@ -194,13 +182,25 @@ const CreateObservationToClass: React.FC = () => {
                 }}
               />
 
+              <label htmlFor="description" className="label">
+                Descrição da Observação
+              </label>
+              <Textarea
+                name="description"
+                placeholder="Digite aqui a descrição da observação"
+                icon={FiInfo}
+                onChange={e => {
+                  setDescription(e.target.value);
+                }}
+              />
+
               <label htmlFor="files" className="label">
                 Arquivos
               </label>
               <Dropzone onFileUpload={setSelectedFiles} />
 
               <label htmlFor="classroom" className="label">
-                Turma/Classe
+                Grupo
               </label>
               <Select
                 name="classroom"

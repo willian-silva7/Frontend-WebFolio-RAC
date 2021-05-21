@@ -179,7 +179,9 @@ export const Search = styled.div`
 
 export const TableContainer = styled.div`
   table {
-    margin-top: 0.43rem;
+    /* margin-top: 0.43rem; */
+    margin-top: -1.43rem;
+
     padding: 0 1.4rem;
     border-spacing: 0 0.86rem;
 
@@ -394,6 +396,35 @@ export const SubTitle = styled.div`
           display: none;
         }
       }
+    }
+  }
+`;
+
+export const Tutorial = styled.div`
+  display: none;
+
+  @media (min-width: 700px) {
+    padding-left: 1.2rem;
+    padding-top: 5rem;
+    margin-top: -4rem;
+
+    display: flex;
+
+    table {
+      margin-left: 1rem;
+      margin-bottom: 0;
+    }
+
+    td {
+      color: var(--color-text-in-input);
+    }
+
+    span {
+      margin-right: 9rem;
+    }
+
+    svg {
+      margin-right: 0.5rem;
     }
   }
 `;

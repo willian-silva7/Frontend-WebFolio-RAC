@@ -17,6 +17,7 @@ import {
   PortfolioTitle,
   PortfolioIcons,
   Files,
+  Tutorial,
 } from './styles';
 import { useAuth } from '../../hooks/AuthContext';
 import { useToast } from '../../hooks/ToastContext';
@@ -130,6 +131,31 @@ const Portfolio: React.FC = () => {
               </Link>
             )}
           </Title>
+
+          <Tutorial>
+            <table>
+              <tbody>
+                <tr>
+                  <td>
+                    <span>Opções:</span>
+                  </td>
+                  <td className="icon">
+                    <FiEdit />
+                  </td>
+                  <td>
+                    <span>- Editar Observação</span>
+                  </td>
+
+                  <td className="icon">
+                    <FiX />
+                  </td>
+                  <td>
+                    <span>- Remover Observação</span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </Tutorial>
 
           <Subtitle>
             <label htmlFor="name">Educador (a): </label>
