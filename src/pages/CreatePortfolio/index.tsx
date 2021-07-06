@@ -133,7 +133,7 @@ const CreatePortfolio: React.FC = () => {
               </label>
               <Input
                 name="classroom"
-                placeholder="Digite aqui a Turma ou Classe da criança, exemplo recomendado: 2A/2020-02"
+                placeholder="Digite aqui o grupo da criança, exemplo recomendado: 2A/2020-02"
                 icon={FiHome}
                 onChange={e => {
                   setClassRoom(e.target.value);

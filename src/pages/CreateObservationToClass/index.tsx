@@ -156,7 +156,7 @@ const CreateObservationToClass: React.FC = () => {
         <Content>
           <form onSubmit={handleSubmit}>
             <fieldset>
-              <legend>Cadastrar Observação Para Turma</legend>
+              <legend>Cadastrar Observação para Grupo</legend>
 
               <label htmlFor="title" className="firstlabel">
                 Título da Observação
@@ -235,7 +235,7 @@ const CreateObservationToClass: React.FC = () => {
                 </ul>
               </ListItem>
 
-              <button type="submit">Cadastrar Portfólio</button>
+              <button type="submit">Cadastrar Observação</button>
             </fieldset>
           </form>
         </Content>

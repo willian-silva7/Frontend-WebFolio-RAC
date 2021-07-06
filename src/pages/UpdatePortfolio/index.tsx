@@ -156,11 +156,11 @@ const UpdatePortfolio: React.FC = () => {
               />
 
               <label htmlFor="classroom" className="label">
-                Turma/Classe
+                Grupo
               </label>
               <Input
                 name="classroom"
-                placeholder="Digite aqui a Turma ou Classe da criança"
+                placeholder="Digite aqui o grupo da criança"
                 defaultValue={classRoom}
                 icon={FiHome}
                 onChange={e => {

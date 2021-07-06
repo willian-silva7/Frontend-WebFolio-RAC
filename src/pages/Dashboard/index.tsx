@@ -119,7 +119,7 @@ const Dashboard: React.FC = () => {
                 <FiHome size={20} />
               </div>
 
-              <label>Criar Observação para Sala</label>
+              <label>Criar Observação para Grupo</label>
             </Link>
           </SubTitle>
         )}
@@ -278,6 +278,11 @@ const Dashboard: React.FC = () => {
                       </Link>
                     )}
                     {user.role === 'teacher' && (
+                      <Link to={`/updateportfolio/${portfolio._id}`}>
+                        <FiEdit className="first-icon" />
+                      </Link>
+                    )}
+                    {user.role === 'manager' && (
                       <Link to={`/updateportfolio/${portfolio._id}`}>
                         <FiEdit className="first-icon" />
                       </Link>
