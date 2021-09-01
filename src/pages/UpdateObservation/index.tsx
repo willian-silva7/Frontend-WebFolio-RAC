@@ -86,9 +86,9 @@ const UpdateObservation: React.FC = () => {
 
       addToast({
         type: 'success',
-        title: 'Observação criada com sucesso',
+        title: 'Observação atualizada com sucesso',
         description:
-          'Agora está observação já pode ser vista no observation da criança',
+          'Está observação já pode ser vista no portfólio da criança',
       });
     },
     [

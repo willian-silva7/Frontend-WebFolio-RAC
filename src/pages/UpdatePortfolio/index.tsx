@@ -75,7 +75,7 @@ const UpdatePortfolio: React.FC = () => {
 
         addToast({
           type: 'success',
-          title: 'Portfólio criado com sucesso',
+          title: 'Portfólio atualizado com sucesso',
           description: 'Agora você já pode criar uma observação',
         });
       } catch (err) {

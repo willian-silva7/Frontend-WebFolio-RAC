@@ -45,7 +45,7 @@ const InviteParent: React.FC = () => {
         type: 'success',
         title: 'Observação criada com sucesso',
         description:
-          'Agora está observação já pode ser vista no Portfolio da criança',
+          'Agora está observação já pode ser vizualizada pelo Responsável',
       });
     },
     [email, history, addToast, params.portfolio],
